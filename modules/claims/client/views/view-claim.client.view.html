@@ -1,0 +1,73 @@
+<section class="content container">
+  <div class="page-header">
+    <div class="pull-right">
+      <span>Vote : </span>
+      <uib-rating ng-model="vm.claim.votes" max="max" read-only="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+      <span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+    </div>
+    <h1>{{vm.claim.name}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <ng-map center="[{{lat}},{{lon}}]" zoom="18">
+        <marker position="[{{lat}},{{lon}}]" title="{{vm.claim.user.displayName}}" visible="true"></marker>
+        <shape
+          name="circle"
+          radius="50"
+          center="[{{lat}}, {{lon}}]"
+          stroke-opacity="1"
+          fill-color="red"
+        />
+        <control name="overviewMap" opened="true"/>
+      </ng-map>
+    </div>
+    <div class="col-lg-6">
+      <span class="text-primary pull-right">{{vm.claim.isPrivate == true ? 'Private Claim' : 'Public Claim'}}</span>
+      <div class="page-header">
+        <h1 data-ng-bind="vm.claim.name"></h1>
+      </div>
+      <div class="list-group-item">
+        <div class="pull-right" data-ng-show="vm.claim.isCurrentUserOwner">
+          <a class="btn btn-primary"
+             data-ui-sref="claims.edit({ claimId: vm.claim._id })">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a>
+          <a class="btn btn-primary" data-ng-click="vm.remove()">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </div>
+        <small>
+          <img ng-src="{{vm.claim.user.profileImageURL}}" class="pull-left header-profile-image"/>
+          <em class="text-muted">
+            Posted On
+            <span data-ng-bind="vm.claim.created | date:'mediumDate'"></span>
+            by
+            <span data-ng-if="vm.claim.user" data-ng-bind="vm.claim.user.displayName"></span>
+            <span data-ng-if="!vm.claim.user">Deleted User</span>
+          </em>
+        </small>
+
+        <h3>community : {{vm.claim.user.community.city}}</h3>
+
+
+        <p class="text-center text-justify" data-ng-bind="vm.claim.content"></p>
+      </div>
+      <p class="text-center text-justify" data-ng-repeat="comment in comments" data-ng-bind="comment.commentData"></p>
+
+      <form name="vm.form.commentForm" class="pull-right form-horizontal" ng-submit="vm.addComment()"
+            novalidate>
+        <fieldset>
+          <legend></legend>
+          <div id="comment_form" class="form-group" show-errors>
+            <textarea name="comment" class="form-control" ng-model="vm.claim.comments" id="comment" class="comment" placeholder="Comment"></textarea>
+            <button type="submit" class="">{{vm.claim._id ? 'Add Comment' : 'Return'}}</button>
+          </div>
+
+          <div ng-show="vm.error" class="text-danger">
+            <strong ng-bind="vm.error"></strong>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

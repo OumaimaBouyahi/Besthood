@@ -1,0 +1,184 @@
+/* latin */
+@font-face {
+    font-family: 'Bowlby One';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Bowlby One'), local('BowlbyOne'), url(https://fonts.gstatic.com/s/bowlbyone/v7/xBO3ZdzVBqGO6i8GOIrhUPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+/* latin */
+@font-face {
+    font-family: 'Carter One';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Carter One'), local('CarterOne'), url(https://fonts.gstatic.com/s/carterone/v8/VjW2qt1pkqVtO22ObxgEBfk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+body {
+    font-family: 'Carter One';
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: none;
+}
+
+html {
+    background-color: #808080;
+
+}
+
+.thumbnail {
+    position: relative;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.thumbnail:hover {
+    background-color: #5CB85C;
+}
+
+.votes {
+    font-size: 47px;
+    color: #197BB5;
+    padding: 10px;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.content {
+    margin-top: 70px;
+}
+
+.undecorated-link:hover {
+    text-decoration: none;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}
+
+.header-profile-image {
+    opacity: 0.8;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.open .header-profile-image,
+a:hover .header-profile-image {
+    opacity: 1;
+}
+
+.user-header-dropdown-toggle {
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
+}
+
+.user-primary-account {
+    font-size: 30px;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.error-text {
+    display: none;
+}
+
+.has-error .help-block.error-text {
+    display: block;
+}
+
+.has-error .help-inline.error-text {
+    display: inline;
+}
+
+ng-map {
+    max-width: 100%;
+    max-height: 550px;
+}
+
+.hed {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+    ),
+    url(../img/bg2.jpg);
+    background-size: cover;
+    height: 80vh;
+
+}
+
+.hed p {
+    color: #deeaa4;
+    font-family: 'Bowlby One';
+    font-size: 7vh;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.hed h3 {
+    color: #f4d559;
+    font-family: 'Carter One';
+    font-size: 4vh;
+    letter-spacing: -1px;
+    line-height: 1;
+    padding: 10px 70px 30px 70px;
+    text-align: center;
+}
+
+#comment_form button, #comment_form textarea {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    padding: 8px 10px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    outline: 0;
+}
+
+#comment_form textarea {
+    width: 350px;
+}
+
+#comment_form button[type="submit"] {
+    cursor: pointer;
+    background: -webkit-linear-gradient(top, #efefef, #ddd);
+    background: -moz-linear-gradient(top, #efefef, #ddd);
+    background: -ms-linear-gradient(top, #efefef, #ddd);
+    background: -o-linear-gradient(top, #efefef, #ddd);
+    background: linear-gradient(top, #efefef, #ddd);
+    color: #333;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+    border: 1px solid #ccc;
+}
+
+#comment_form button[type="submit"]:hover {
+    background: -webkit-linear-gradient(top, #eee, #ccc);
+    background: -moz-linear-gradient(top, #eee, #ccc);
+    background: -ms-linear-gradient(top, #eee, #ccc);
+    background: -o-linear-gradient(top, #eee, #ccc);
+    background: linear-gradient(top, #eee, #ccc);
+    border: 1px solid #bbb;
+}
+
+#comment_form button[type="submit"]:active {
+    background: -webkit-linear-gradient(top, #ddd, #aaa);
+    background: -moz-linear-gradient(top, #ddd, #aaa);
+    background: -ms-linear-gradient(top, #ddd, #aaa);
+    background: -o-linear-gradient(top, #ddd, #aaa);
+    background: linear-gradient(top, #ddd, #aaa);
+    border: 1px solid #999;
+}

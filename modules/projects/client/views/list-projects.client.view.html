@@ -1,0 +1,47 @@
+<section class="content container">
+  <div class="row">
+    <div class="col-lg-6">
+      <ng-map  center='[35,10]' zoom="6" default-style="false" >
+        <marker  data-ng-repeat="p in vm.projects" title='{{p.created}}'  position='[{{p.lat}},{{p.lon}}]' visible="true" on-click="gotolink(event,claim)"  />
+        <shape
+          name="circle"
+          radius="50"
+          center="[{{p.lat}}, {{p.lon}}]"
+          stroke-opacity="1"
+          fill-color="red"
+        />
+        <control name="overviewMap" opened="true" />
+      </ng-map>
+
+    </div>
+    <div class="col-lg-6">
+  <div class="page-header">
+    <h1>Projects</h1>
+  </div>
+  <div class="list-group">
+
+    <a data-ng-repeat="project in vm.projects"
+       data-ui-sref="projects.view({ projectId: project._id })"
+       class="list-group-item">
+      <img ng-src="{{project.user.profileImageURL}}" alt="{{projet.user.displayName}}" class="header-profile-image" />
+
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="project.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="project.user" data-ng-bind="project.user.displayName"></span>
+        <span data-ng-if="!project.user">Deleted User</span>
+      </small>
+      <p class="list-group-item-heading" data-ng-bind="project.content"></p>
+      <h4 class="list-group-item-heading" data-ng-bind="project.user.displayName"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="project.name"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="project.user.community.city"></h4>
+
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" data-ng-if="vm.projects.$resolved && !vm.projects.length">
+    No Projects yet, why don't you <a data-ui-sref="projects.create">create one</a>?
+  </div>
+      </div>
+    </div>
+</section>

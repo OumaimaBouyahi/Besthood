@@ -1,0 +1,86 @@
+<section ng-controller="HomeController">
+  <div class="hed">
+    <div class="col-lg-3 pull-left">
+      <video controls poster="img/logo2.png">
+        <source src="http://streaming2.toutech.net:8000/jawharafm">
+        Radio JawhraFM </source>
+      </video>
+    </div>
+    <div class="col-sm-3 col-md-3 content pull-right form-group">
+      <form class="navbar-form" role="search">
+        <div class="input-group">
+          <input type="text" ng-model="l" class="form-control" placeholder="Find Weather" name="l">
+          <div class="input-group-btn">
+            <button class="btn btn-default" ng-click="findWeather(l)" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div>
+      </form>
+      <div>
+        <h5 style="color: #fff6de">Weather For: {{ place.location.city }}</h5>
+        <h6 style="color: #fff6de">currently: {{ place.item.condition.text }} | {{ place.item.condition.temp }}&deg;
+          <img src="http://l.yimg.com/a/i/us/we/52/{{place.item.condition.code}}.gif"/></h6>
+      </div>
+    </div>
+    <p>Welcome to BESTHOOD</p>
+
+    <h3 class="text-center">Welcome to the Department of Neighborhood and Community Services (BESTHOOD)! We bring
+      people and resources together to strengthen the well-being of individuals and communities.</h3>
+  </div>
+  <div class="content container">
+    <div class="page-header">
+      <h1>News</h1>
+    </div>
+    <!-- Page Content -->
+    <div class="container">
+      <!-- Search News Icons Section -->
+      <div class="col-sm-3 col-md-3 pull-left form-group">
+        <form class="navbar-form" role="search">
+          <div class="input-group">
+            <input type="text" ng-model="n" class="form-control" placeholder="Find News" name="q">
+            <div class="input-group-btn">
+              <button class="btn btn-default" ng-click="findNews(n)" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
+        </form>
+        <p class="text-danger" ng-show="n"><span class="btn-info">Searching news for:</span> {{n}}</p>
+      </div>
+      <!-- /.row -->
+    </div>
+    <a ng-repeat="n in news" href="{{n.link}}">
+    <div class="col-xs-10 col-sm-6 col-md-3 article" style="min-height: 400px" >
+      <div class="thumbnail" style="height: 380px">
+
+          <img style="max-height: 150px" src="{{n.pagemap.cse_thumbnail[0].src}}" alt="">
+
+
+        <div class="caption">
+          <h4 class="text-center" ng-bind-html="n.htmlTitle"></h4>
+
+          <p ng-bind-html="n.htmlSnippet"></p>
+
+          <p class="text-center">
+
+          <p>{{n.displayLink}}</p>
+          </p>
+        </div>
+      </div>
+    </div>
+    </a>
+
+    <div class="col-lg-12">
+      <ng-map center="[{{lat}},{{lon}}]" zoom="13">
+        <marker position="[{{lat}},{{lon}}]" title="{{authentication.user.displayName}}" visible="true"></marker>
+        <shape
+          name="circle"
+          radius="50"
+          center="[{{lat}}, {{lon}}]"
+          stroke-opacity="1"
+          fill-color="red"
+        />
+        <control name="overviewMap" opened="true"/>
+      </ng-map>
+    </div>
+  </div>
+
+
+</section>

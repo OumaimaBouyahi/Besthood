@@ -1,0 +1,13 @@
+---
+declared-services:
+  mean-mongo:
+    label: mongodb
+    plan: 100
+applications:
+- name: besthood
+  host: besthood-${random-word}
+  memory: 1500M
+  services:
+  - mean-mongo
+  env:
+    NODE_ENV: cloud-foundry

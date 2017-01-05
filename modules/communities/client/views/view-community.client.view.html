@@ -1,0 +1,43 @@
+<section class="content container">
+  <div class="row">
+  <div class="col-lg-6">
+    <ng-map center="[{{vm.community.lat}},{{vm.community.lon}}]" zoom="18">
+      <marker position="[{{vm.community.lat}},{{vm.community.lon}}]" title="{{vm.community.city}}" visible="true"></marker>
+      <shape
+        name="circle"
+        radius="50"
+        center="[{{vm.community.lat}}, {{vm.community.lon}}]"
+        stroke-opacity="1"
+        fill-color="red"
+      />
+      <control name="overviewMap" opened="true" />
+    </ng-map>
+  </div>
+        <div class="col-lg-6">
+  <div class="page-header">
+    <h1 data-ng-bind="vm.community.city"></h1>
+  </div>
+  <div class="pull-right"
+       data-ng-show="vm.community.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       data-ui-sref="communities.edit({ communityId: vm.community._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" data-ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Posted on
+      <span data-ng-bind="vm.community.created | date:'mediumDate'"></span>
+      by
+      <span data-ng-if="vm.community.user"
+            data-ng-bind="vm.community.user.displayName"></span>
+      <span data-ng-if="!vm.community.user">Deleted User</span>
+    </em>
+  </small>
+  <h2 class="lead" data-ng-bind="vm.community.city"></h2>
+  <h3 class="lead" data-ng-bind="vm.community.country"></h3>
+          </div></div>
+</section>

@@ -1,0 +1,49 @@
+<section class="content container" data-ng-controller="ContactController">
+  <!-- Boostrap panels -->
+  <div class="panel panel-info col-lg-112 col-md-push-2">
+    <div class="panel-heading">
+      <h3 class="panel-title ">Contact us </h3>
+    </div>
+    <div class="panel-body ">
+      <div ng-show="!sent">
+        <form name="contactForm" ng-submit="processForm()" class="simple-form">
+          <!-- Our data model is called "guest" -->
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" data-ng-model="guest.name" class="form-control"
+                   placeholder="Your name here" required>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" data-ng-model="guest.email" class="form-control"
+                   placeholder="Your email address here" required/>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="phone" data-ng-model="guest.phone" class="form-control"
+                   placeholder="Your phone number here" required/>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Message</label>
+		  <textarea type="text" data-ng-model="guest.inquiry" class="form-control"
+                rows="5" placeholder="Your message here" required/> </textarea>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-primary btn-lg">Send message</button>
+          </div>
+        </form>
+      </div>
+      <div ng-show="sent">
+        <div class="alert alert-success" role="alert">
+          Thank you, your message has been submitted.
+        </div>
+        <button class="btn btn-success btn-lg" ng-click="sent = !sent">
+          Send Another message!
+        </button>
+      </div>
+    </div>
+    </div>
+</section>

@@ -1,0 +1,57 @@
+<section class="content container">
+  <div class="row">
+    <div class="col-lg-4">
+      <ng-map center='[36,9]' zoom="5" default-style="false">
+        <marker data-ng-repeat="claim in pagedItems" title='{{claim.user.displayName}}'
+                data-ng-show="claim.user.community._id == authentication.user.community || $scope.claims.isPrivate == false"
+                position='[{{claim.lat}},{{claim.lon}}]' visible="true" data-ui-sref="claims.view({ claimId: claim._id })"/>
+        <shape
+          name="circle"
+          radius="50"
+          center="[{{claim.lat}}, {{claim.lon}}]"
+          stroke-opacity="1"
+          fill-color="red"
+        />
+        <control name="overviewMap" opened="true"/>
+      </ng-map>
+
+    </div>
+
+    <div class="col-lg-8">
+      <div class="page-header">
+        <div class="pull-right">
+          <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
+        </div>
+        <h1>Claims</h1>
+      </div>
+      <div class="list-group">
+
+        <a data-ng-repeat="claim in pagedItems"
+           data-ui-sref="claims.view({ claimId: claim._id })" class="list-group-item">
+
+          <img ng-src="{{claim.user.profileImageURL}}" alt="{{claim.user.displayName}}" class="header-profile-image"/>
+          <small class="list-group-item-text">
+            Posted on
+            <span data-ng-bind="claim.created | date:'mediumDate'"></span>
+            by
+
+            <span data-ng-if="claim.user" data-ng-bind="claim.user.displayName"></span>
+
+            <span class="pull-right" data-ng-if="claim.user" data-ng-show="claim.isPrivate == true">Claim type: Private</span>
+            <span class="pull-right" data-ng-if="claim.user" data-ng-show="claim.isPrivate == false">Claim type: Public</span>
+
+            <span data-ng-if="!claim.user">Deleted User</span>
+          </small>
+          <h4 class="list-group-item-heading" data-ng-bind="claim.name"></h4>
+          <h5 class="list-group-item-heading" data-ng-bind="claim.user.displayName"></h5>
+          <h6 class="list-group-item-info" data-ng-bind="claim.user.community.city"></h6>
+
+        </a>
+      </div>
+      <div class="alert alert-warning text-center" data-ng-if="vm.claims.$resolved && !vm.claims.length">
+        No Claims yet, why don't you <a data-ui-sref="claims.create">create one</a>?
+      </div>
+      <uib-pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+    </div>
+  </div>
+</section>

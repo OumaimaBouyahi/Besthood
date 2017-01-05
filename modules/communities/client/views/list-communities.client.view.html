@@ -1,0 +1,31 @@
+<section class="content container">
+  <div class="page-header">
+    <div class="pull-right">
+      <input class="form-control col-md-4" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
+    </div>
+    <h1>Communities</h1>
+  </div>
+  <div class="list-group">
+    <a data-ng-repeat="community in pagedItems"
+       data-ui-sref="communities.view({ communityId: community._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span data-ng-bind="community.created | date:'mediumDate'"></span>
+        by
+        <span data-ng-if="community.user" data-ng-bind="community.user.displayName"></span>
+        <div class="pull-right">
+          members
+          <span data-ng-bind="members" ></span>
+        </div>
+        <span data-ng-if="!community.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" data-ng-bind="community.city"></h4>
+      <h4 class="list-group-item-heading" data-ng-bind="community.country"></h4>
+    </a>
+  </div>
+  <uib-pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></uib-pagination>
+  <div class="alert alert-warning text-center" data-ng-if="vm.communities.$resolved && !vm.communities.length">
+    No Communities yet, why don't you <a data-ui-sref="communities.create">create one</a>?
+  </div>
+</section>
